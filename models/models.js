@@ -19,7 +19,7 @@ var Sequelize = require('sequelize');
 var sequelize = new Sequelize(DB_name, user, pwd, 
 	{ 	dialect: protocol, 
 		protocol: protocol,
-		port: host,
+		port: port,
 		host:host,
 		storage: storage,	// Sólo SQLite (.env)
 		omitNull: true		// Sólo Postgres

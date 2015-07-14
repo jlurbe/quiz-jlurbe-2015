@@ -18,6 +18,8 @@ exports.load = function(req, res, next, commentId) {
 
 // GET /quizes/:quizId/comments/new
 exports.new = function(req,res) {	
+	console.log(req.session.time);
+	console.log("hi");
 	res.render('comments/new', {quizid: req.params.quizId, errors:[]});
 };
 

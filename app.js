@@ -29,6 +29,19 @@ app.use(methodOverride('_method'));
 
 // Helpers dinámicos:
 app.use(function(req,res,next){
+	// Capturo la hora actual
+	var nowTime = new Date();
+	nowTime = nowTime.getTime();
+	if(req.session.time !== "undefined") {
+		// Si han transcurrido más de 120 segundos destruyo la sesión
+		if(nowTime-req.session.time>120000)
+			delete req.session.user;		
+	}
+	req.session.time = nowTime;
+	next();
+});
+
+app.use(function(req,res,next){
 	// Guardar path en session.redir para despues de login
 	if(!req.path.match(/\/login|\/logout/)){
 		req.session.redir = req.path;
